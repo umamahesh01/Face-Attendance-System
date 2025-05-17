@@ -5,8 +5,8 @@ import cv2
 
 
 # === CONFIG ===
-SUPABASE_URL = "https://crfsyqgtifoilanqrjqr.supabase.co"
-SUPABASE_SERVICE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNyZnN5cWd0aWZvaWxhbnFyanFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjA5MTUsImV4cCI6MjA2MjY5NjkxNX0.utQFmL7XJUCg2nLOuboNgFSm-Cm9EGrTFt5VTBcZzoE"
+SUPABASE_URL = "your_supabase_url_here"
+SUPABASE_SERVICE_KEY = "your_supabase_service_key_here"
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_SERVICE_KEY)
 
 folderpath = 'Resources/Modes'
