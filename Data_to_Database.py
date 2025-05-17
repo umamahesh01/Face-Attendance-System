@@ -14,8 +14,8 @@ imgdir = os.listdir(folderpath)
 imgModeList = [cv2.imread(os.path.join(folderpath, i)) for i in imgdir]
 
 def insert_attendance(person_id: int):
-    now = now = datetime.datetime.now().replace(microsecond=0).isoformat()
-    today = datetime.datetime.now().date().isoformat()
+    now = datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0).isoformat()
+    today = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
 
     # Check if already marked today
     existing = supabase.table("attendance") \
@@ -32,12 +32,12 @@ def insert_attendance(person_id: int):
     name = get_person_name_by_id(person_id)
     if not name:
         print(f"No name found for ID {person_id}. Skipping attendance.")
-
+        return 'not_found'
 
     # Prepare row
     data = {
         "id": person_id,
-        "Student_Name": name,  # Be sure to match exact case
+        "Student_Name": name,
         "time": now,
     }
 
@@ -56,7 +56,7 @@ def get_person_name_by_id(person_id: int):
         print("Supabase response:", response)
 
         if response.data and len(response.data) > 0:
-            return response.data[0].get("name")   # name is column name in FirstOneTable
+            return response.data[0].get("name")
         else:
             return None
 
